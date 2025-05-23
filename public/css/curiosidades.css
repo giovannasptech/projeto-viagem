@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+  }
+
+  body {
+    font-family: 'Fredoka', sans-serif;
+    background: linear-gradient(to bottom, #bde0fe, #a2d2ff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+
+  h1 {
+    color: #023e8a;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  h1::after {
+    content: "✈️🌎";
+    font-size: 1.5rem;
+    position: absolute;
+    right: -70px;
+    top: 0;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .card {
+    perspective: 1000px;
+  }
+
+  .card input {
+    display: none;
+  }
+
+  .card-content {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .card input:checked + .card-content {
+    transform: rotateY(180deg);
+  }
+
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    padding: 10px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .front {
+    background: #caf0f8;
+    border: 2px dashed #0096c7;
+    flex-direction: column;
+  }
+
+  .front img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .back {
+    background: #0077b6;
+    color: white;
+    transform: rotateY(180deg);
+    text-align: center;
+    padding: 15px;
+  }
+
+  .back::after {
+    content: "🌏";
+    display: block;
+    font-size: 1.0rem;
+    margin-top: 10px;
+  }
+
+  .footer {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #023e8a;
+  }
