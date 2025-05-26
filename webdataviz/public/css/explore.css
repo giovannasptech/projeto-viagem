@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+  }
+  
+  body {
+    font-family: 'Fredoka', sans-serif;
+    background: url("https://forbes.com.br/wp-content/uploads/2022/04/4_22-praias-mais-bonitas-da-Europa.jpg") no-repeat center center;
+    background-size: cover;
+    color: #2d8bd8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  header {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1em 2em;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: #081c47;
+    font-weight: 600;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: #fff;
+  }
+  
+  .search-box input {
+    border: none;
+    outline: none;
+    padding: 5px;
+  }
+  
+  .search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .container {
+    background-color: rgb(255, 255, 255);
+    margin-top: 3em;
+    padding: 2em;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+  }
+  
+  .subtext {
+    font-size: 16px;
+    color: #0b1541;
+    margin: 1em 0 2em;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5em;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 1em;
+    width: 200px;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .card h2 {
+    margin: 0.5em 0 0.2em;
+    font-size: 18px;
+  }
+  
+  .card p {
+    color: #f39c12;
+    font-size: 16px;
+  }
+  
+  
