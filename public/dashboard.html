@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Giovanna’s Travel</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+  body {
+  background:rgb(174, 206, 248);
+  color: #eee;
+  font-family: 'Fredoka', sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.grafico-container {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  max-width: 900px;
+  height: 400px; /* altura real do gráfico */
+  background:rgb(13, 34, 90);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+  padding: 20px;
+}
+
+#grafico_viagens {
+
+  width: 100%;
+  height: 100%;
+}
+
+
+    #kpi-container {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+      background:rgb(19, 38, 97);
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+      width: 90vw;
+      max-width: 900px;
+      justify-content: space-around;
+    }
+    
+    .kpi-box {
+      text-align: center;
+      flex: 1;
+    }
+    .kpi-label {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .kpi-value {
+      font-size: 28px;
+      font-weight: bold;
+      color:rgb(127, 184, 211);
+    }
+    #cabecalho {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+#cabecalho button {
+  background-color:rgb(127, 191, 211);
+  color:rgb(147, 172, 243);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#cabecalho button:hover {
+  background-color:rgb(108, 160, 194);
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div id="kpi-container">
+    <div class="kpi-box">
+      <div class="kpi-label"> Acertos</div>
+      <div id="media_acertos" class="kpi-value">0</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Erros</div>
+      <div id="media_erros" class="kpi-value">0</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Total de Tentativas</div>
+      <div id="total_resultados" class="kpi-value">0</div>
+    </div>
+  </div>
+
+<div id="cabecalho">
+  <h2 id="saudacao">Olá, Usuário!</h2>
+  <!-- <button onclick="voltarInicio()">Voltar para a tela inicial</button> -->
+</div>
+
+  <div class="grafico-container">
+    <span style="font-size: 10vh; font-weight: 700; color: aqua;">Média geral de pontuação</span>
+    <canvas id="grafico_viagens"></canvas>
+  </div>
+</body>
+
+  <script>
+    var fk_usuario = sessionStorage.ID_USUARIO;
+    var b_usuario = sessionStorage.NOME_USUARIO;
+    document.getElementById("saudacao").innerText = `${b_usuario}`
+     tentativas()
+     acertos()
+     erros()
+
+
+const linha = document.getElementById('grafico_viagens');
+const cores = ["#4DA6FF", "#1E90FF"];
+
+const grafico = new Chart(linha, {
+    type: 'doughnut',
+    data: {
+        labels: ['Erros', 'Acertos'],
+        datasets: [{
+            label: 'Quantidades  Gerais',
+            backgroundColor: cores.slice(0, 2),
+            data: [59, 7],
+            borderWidth: 1
+        }]
+    }
+});
+
+
+
+
+
+    function tentativas(){
+
+    fetch(`/dash/tentativas_totais/${fk_usuario}`)
+
+  .then(res=> res.json())
+    .then(resposta =>{
+
+        var qtd = resposta[0].total_tentativas
+        console.log(qtd)
+        document.getElementById("total_resultados").innerText = `${qtd}`
+
+    })
+}
+
+function acertos() {
+   fetch(`/dash/media_acertos/${fk_usuario}`)
+
+  .then(res=> res.json())
+    .then(resposta =>{
+
+        var qtd = resposta[0].media_acertos
+        console.log(qtd)
+        document.getElementById("media_acertos").innerText = `${qtd}`
+              grafico.data.datasets[0].data[0] = qtd
+              grafico.update()
+
+
+    })
+}
+
+function erros() {
+  fetch(`/dash/media_erros/${fk_usuario}`)
+
+  .then(res=> res.json())
+    .then(resposta =>{
+
+        var qtd = resposta[0].media_erros
+        console.log(qtd)
+        document.getElementById("media_erros").innerText = `${qtd}`
+        grafico.data.datasets[0].data[1] = qtd
+        grafico.update()
+    })
+  
+}
+
+
+  </script>
+
+</body>
+
+</html>

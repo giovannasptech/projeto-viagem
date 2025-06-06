@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Monte seu Roteiro Mágico ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/roteiro.css">
+</head>
+<body>
+  <div class="container">
+    <h1> Monte seu Roteiro Mágico com a GiGi </h1>
+
+    <div id="quiz">
+      <div class="question" id="q1">
+        <p>Qual clima você prefere?</p>
+        <button onclick="responder('q1', 'quente')">☀️ Quente</button>
+        <button onclick="responder('q1', 'frio')">❄️ Frio</button>
+      </div>
+
+      <div class="question" id="q2" style="display:none">
+        <p> O que você mais curte numa viagem?</p>
+        <button onclick="responder('q2', 'aventura')">🏞️ Aventura</button>
+        <button onclick="responder('q2', 'cultura')">🏛️ Cultura</button>
+        <button onclick="responder('q2', 'relax')">🌊 Relaxar</button>
+      </div>
+
+      <div class="question" id="q3" style="display:none">
+        <p> O que não pode faltar?</p>
+        <button onclick="responder('q3', 'comida')">🍽️ Comida boa</button>
+        <button onclick="responder('q3', 'música')">🎶 Música</button>
+        <button onclick="responder('q3', 'paisagem')">🌄 Paisagens</button>
+      </div>
+      <footer>
+        <p>&copy; 2025 Giovanna's Travel.</p>
+      </footer>
+    </div>
+
+    <div id="resultado" style="display:none">
+      <h2>🌍 Seu Roteiro Mágico é:</h2>
+      <ul id="destinos"></ul>
+      <img id="mascote" src="" alt="GiGi no destino">
+    </div>
+  </div>
+  <script >
+    let respostas = {};
+
+function responder(pergunta, resposta) {
+  respostas[pergunta] = resposta;
+  document.getElementById(pergunta).style.display = "none";
+
+  if (pergunta === 'q1') {
+    document.getElementById('q2').style.display = "block";
+  } else if (pergunta === 'q2') {
+    document.getElementById('q3').style.display = "block";
+  } else if (pergunta === 'q3') {
+    mostrarRoteiro();
+  }
+}
+
+function mostrarRoteiro() {
+  document.getElementById('quiz').style.display = "none";
+  document.getElementById('resultado').style.display = "block";
+
+  const roteiros = {
+    aventureiro: ["Chile", "México", "Estados Unidos"],
+    cultura: ["Argentina", "Brasil", "Paraguai"],
+    relax: ["Uruguai", "Brasil", "México"],
+    comida: ["México", "Argentina", "Brasil"],
+    música: ["Paraguai", "Brasil", "Uruguai"],
+    paisagem: ["Chile", "Estados Unidos", "Argentina"]
+  };
+
+  let estilo = respostas.q2 || 'aventura';
+  if (respostas.q3 === 'comida') estilo = 'comida';
+  else if (respostas.q3 === 'música') estilo = 'música';
+  else if (respostas.q3 === 'paisagem') estilo = 'paisagem';
+
+  const destinos = roteiros[estilo];
+  const ul = document.getElementById('destinos');
+  ul.innerHTML = ""; 
+
+  destinos.forEach(destino => {
+    const li = document.createElement('li');
+    li.textContent = `🌎 ${destino}`;
+    ul.appendChild(li);
+  });
+
+  const mascoteURL = {
+    aventura: "https://images.pexels.com/photos/67517/pexels-photo-67517.jpeg?cs=srgb&dl=arvores-estrada-montanhas-natureza-67517.jpg&fm=jpg",
+    cultura: "https://th.bing.com/th/id/OIP.fayINp0T8k6z19SsMzrcCAHaEt?rs=1&pid=ImgDetMain",
+    relax: "https://th.bing.com/th/id/OIP.XgrZ7fn297KlwJ5FU_dcbAHaEo?rs=1&pid=ImgDetMain",
+    comida: "https://th.bing.com/th/id/OIP.TeUTuHnNuTWI6aqhc0DPNQHaE8?rs=1&pid=ImgDetMain",
+    música: "https://th.bing.com/th/id/OIP.H-UmFg569NcRP4_JKVy4BgHaEK?rs=1&pid=ImgDetMain",
+    paisagem: "https://th.bing.com/th/id/R.57a51ed36e7dd2418b05273e676b8f34?rik=8cglvflMIKgpYQ&pid=ImgRaw&r=0"
+  };
+
+  document.getElementById('mascote').src = mascoteURL[estilo];
+}
+   
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+    background: #fffaf5;
+    color: #333;
+  }
+
+  header {
+    background: #a0c7e7;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 600;
+  }
+
+  main {
+    padding: 30px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #3a72a6;
+  }
+
+  .musica {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 8px solid #a0cde7;
+    gap: 20px;
+  }
+
+  .musica img {
+    width: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .musica-info {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .musica h3 {
+    margin-top: 0;
+    color: #3a75a6;
+    font-size: 1.3em;
+  }
+
+  .musica p {
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+
+  .extra {
+    background: #d0def4;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 40px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #a0cbe7;
+    color: white;
+    margin-top: 40px;
+  }
+
+  a {
+    color: #3a75a6;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 700px) {
+    .musica {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .musica img {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .musica-info {
+      text-align: center;
+    }
+  }

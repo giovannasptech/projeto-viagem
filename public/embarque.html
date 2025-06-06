@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartão de Embarque</title>
+  <link rel="stylesheet" type="text/css" href="../css/embarque.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+ 
+</head>
+<body>
+
+  <div class="cartao">
+    <h2>🛫 Cartão de Embarque</h2>
+
+    <div class="info">
+      <label for="nome">Nome:</label>
+      <input id="nome" type="text" placeholder="Seu nome completo" required>
+
+      <label for="destino">Destino:</label>
+      <input id="destino" type="text" placeholder="Cidade ou país" required>
+
+      <label for="data">Data da Viagem:</label>
+      <input id="data" type="date" required>
+
+      <button class="botao" onclick="gerarCartao()">Gerar Cartão</button>
+    </div>
+
+    <div class="gerado" id="cartaoFinal">
+      <p><strong>Passageiro:</strong> <span id="passageiro"></span></p>
+      <p><strong>Destino:</strong> <span id="viagem"></span></p>
+      <p><strong>Data:</strong> <span id="dataViagem"></span></p>
+      <p><em>Boa viagem! 🌍✈️</em></p>
+    </div>
+    <footer>
+      <p>&copy; 2025 Giovanna's Travel.</p>
+    </footer>
+  </div>
+
+  <script>
+    function gerarCartao() {
+      const nome = document.getElementById('nome').value.trim();
+      const destino = document.getElementById('destino').value.trim();
+      const data = document.getElementById('data').value;
+
+      if (nome && destino && data) {
+        document.getElementById('passageiro').textContent = nome;
+        document.getElementById('viagem').textContent = destino;
+
+        // Converter data para formato dd/mm/aaaa
+        const dataFormatada = new Date(data).toLocaleDateString('pt-BR', {
+          day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+
+        document.getElementById('dataViagem').textContent = dataFormatada;
+        document.getElementById('cartaoFinal').style.display = 'block';
+      } else {
+        alert('Por favor, preencha todos os campos!');
+      }
+    }
+  </script>
+
+</body>
+</html>

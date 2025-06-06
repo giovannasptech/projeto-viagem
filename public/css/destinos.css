@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Fredoka', sans-serif;
-  background: linear-gradient(to bottom, #dbe5f2, #dbe5f2);
+  background-color: #a5d1fa;
   padding: 40px 20px;
   text-align: center;
   color: #023e8a;
@@ -31,7 +31,7 @@ header h2 {
 h1 {
   margin-bottom: 40px;
   font-size: 2.2em;
-  color: #03045e;
+  color: #0288d1;
 }
 
 .grid-container {

@@ -1,59 +1,89 @@
 body {
-    font-family: 'Fredoka', sans-serif, sans-serif;
-    background: #e5e5f5;
-    padding: 20px;
-    text-align: center;
-  }
-  h1 {
-    color: #1f2ea2;
-  }
-  #quiz-container {
-    max-width: 600px;
-    margin: 20px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(35, 31, 162, 0.2);
-  }
-  #question {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-  }
-  .option {
-    display: block;
-    background-color: #ede7f6;
-    margin: 10px 0;
-    padding: 12px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    border: 2px solid transparent;
-    transition: background-color 0.3s, border-color 0.3s;
-  }
-  .option:hover {
-    background-color: #c4d8e9;
-  }
-  .option.selected {
-    border-color: #3791cd;
-    background-color: #93a5d8;
-  }
-  #submit-btn {
-    margin-top: 20px;
-    padding: 10px 25px;
-    font-size: 1.1rem;
-    background-color: #1f4da2f7;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-  }
-  #submit-btn:hover {
-    background-color: #1b419a;
-  }
-  #result {
-    color:#1b419a;
-    margin-top: 20px;
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
+  background-color: #e6f0ff;
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  flex-direction: column;
+  color: #333;
+}
+
+button {
+  background-color: #4da6ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+button:hover {
+  background-color: #3399ff;
+  transform: translateY(-2px);
+}
+
+#pontuacaoEJogo {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 80%;
+  max-width: 800px;
+}
+
+#jogo {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #f2f8ff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#pontuacao {
+  background-color: #d9ecff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#pontuacao span, #pontuacaoFinal span {
+  font-size: 18px;
+}
+
+label.option {
+  background-color: #ffffff;
+  border: 2px solid #4da6ff;
+  border-radius: 10px;
+  padding: 10px;
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+label.option:hover {
+  background-color: #e0f0ff;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+#msgFinal {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0077cc;
+  margin-top: 20px;
+  text-align: center;
+}

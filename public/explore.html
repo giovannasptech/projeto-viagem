@@ -2,49 +2,54 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore - Viagens</title>
-  <link rel="stylesheet" href="explore.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" >
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <title>Explorar o Mapa</title>
+  <link rel="stylesheet" href="../css/explore.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="inicial.html">INÍCIO</a></li>
-        <li><a href="sobre.html">SOBRE</a></li>
-        <li><a href="explore.html">EXPLORE</a></li>
-        <li><a href="destinos.html">DESTINOS</a></li>
-      </ul>
-      <div class="search-box">
-        <input type="text" placeholder="PESQUISAR ...">
 
-      </div>
-    </nav>
-  </header>
+  <header>🌍 Explore o Mundo</header>
 
-  <main class="container">
-    <h1>EXPLORE</h1>
-    <p class="subtext">Não planejamos apenas viagens,<br>Planejamos memórias inesquecíveis!</p>
+  <div class="mapa-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="Mapa mundi">
 
-    <div class="cards">
-      <div class="card">
-        <img src="https://viagememdetalhes.com.br/wp-content/uploads/2021/06/anse-marron-2-la-digue-seychelles-tourism.jpg" alt="Praias">
-        <h2>Praias</h2>
-        <p>★★★★★</p>
-      </div>
-      <div class="card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnzNemg_mSbd4_JchfEKKUUMFswjkyZksvYg&s" alt="Montanhas">
-        <h2>Montanhas</h2>
-        <p>★★★★★</p>
-      </div>
-      <div class="card">
-        <img src="https://descubraeua.com.br/wp-content/uploads/2020/06/manhattan-nova-york.jpg" alt="Cidade">
-        <h2>Cidade</h2>
-        <p>★★★★★</p>
-      </div>
-    </div>
-  </main>
+   
+    <div class="ponto" style="top: 30%; left: 47%;" onclick="mostrarInfo('França', 'Croissants, cafés e a Torre Eiffel!')"></div>
+    <div class="ponto" style="top: 55%; left: 34%;" onclick="mostrarInfo('Brasil', 'Florestas tropicais, praias e alegria!')"></div>
+    <div class="ponto" style="top: 38%; left: 82%;" onclick="mostrarInfo('Japão', 'Tecnologia, templos e sakuras!')"></div>
+    <div class="ponto" style="top: 30%; left: 15%;" onclick="mostrarInfo('Estados Unidos', 'Hollywood, Nova York e diversidade cultural!')"></div>
+    <div class="ponto" style="top: 45%; left: 50%;" onclick="mostrarInfo('Egito', 'Pirâmides, faraós e o rio Nilo!')"></div>
+    <div class="ponto" style="top: 60%; left: 53%;" onclick="mostrarInfo('África do Sul', 'Safáris, natureza e diversidade!')"></div>
+    <div class="ponto" style="top: 75%; left: 87%;" onclick="mostrarInfo('Austrália', 'Cangurus, praias e o Opera House!')"></div>
+
+   
+    <div id="info" class="info-box"></div>
+    <footer>
+      <p>&copy; 2025 Giovanna's Travel.</p>
+    </footer>
+  </div>
+
+  <script >
+    function mostrarInfo(titulo, mensagem) {
+  const infoBox = document.getElementById('info');
+  infoBox.innerHTML = `<strong>${titulo}</strong><br>${mensagem}`;
+  infoBox.style.display = 'block';
+
+  event.stopPropagation();
+  infoBox.style.top = (event.clientY - 100) + 'px';
+  infoBox.style.left = (event.clientX - 100) + 'px';
+}
+
+document.body.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('ponto')) {
+    document.getElementById('info').style.display = 'none';
+  }
+});
+   
+  </script>
+
 </body>
 </html>
+
+</body>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌎 Meu Mapa de Viagens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/registro.css">
+</head>
+<body>
+  <header>✈️Relatório de Viagens </header>
+
+  <main>
+    <p>Digite o nome dos países que você já visitou:</p>
+    <input type="text" id="inputPais" placeholder="Ex: Brasil, Japão" />
+    <button onclick="adicionarPais()">Adicionar</button>
+
+    <ul id="listaPaises"></ul>
+
+    <div class="resultado" id="resultado" style="display: none;">
+      <h3>🌍 Relatório de Viagens</h3>
+      <p><strong>Total de países visitados:</strong> <span id="totalVisitados"></span></p>
+      <p><strong>Porcentagem do mundo conhecido:</strong> <span id="porcentagemMundo"></span>%</p>
+      <footer>
+        <p>&copy; 2025 Giovanna's Travel.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    var paisesVisitados = [];
+    var TOTAL_PAISES = 195;
+
+    function adicionarPais  () {
+  var PaisVar = document.getElementById('inputPais').value.trim(); // elemento input
+                   // valor do input
+
+  if (PaisVar === '') {
+    alert('Digite o nome de um país válido!');
+    return;
+  }
+
+  if (paisesVisitados.includes(PaisVar.toLowerCase())) {
+    alert('Você já adicionou esse país!');
+    input.value = '';
+    return;
+  }
+
+  paisesVisitados.push(PaisVar.toLowerCase());
+
+  var lista = document.getElementById('listaPaises');
+  var item = document.createElement('li');
+  item.textContent = PaisVar;
+  lista.appendChild(item);
+
+   // limpa o campo após adicionar
+
+  fetch("/usuarios/adicionarPais", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      PaisServer: PaisVar,
+    }),
+  })
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
+  })
+  .catch(function (error) {
+    console.log("Erro ao enviar os dados: ", error);
+    alert("Erro ao enviar os dados.");
+  });
+
+  atualizarRelatorio();
+}
+
+
+    function atualizarRelatorio() {
+      var total = paisesVisitados.length;
+      var porcentagem = ((total / TOTAL_PAISES) * 100).toFixed(2);
+
+      document.getElementById('totalVisitados').textContent = total;
+      document.getElementById('porcentagemMundo').textContent = porcentagem;
+      document.getElementById('resultado').style.display = 'block';
+    }
+   
+  </script>
+</body>
+</html>

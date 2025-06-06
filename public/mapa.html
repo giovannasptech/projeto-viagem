@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <title>Mapa dos Países</title>
+  <style>
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  background: linear-gradient(to bottom, #87cefa 0%, #e6f3ff 100%);
+  margin: 0;
+  padding: 0;
+  color:rgb(32, 31, 32);
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+h1 {
+  margin: 30px 0 10px;
+  font-size: 3rem;
+  color: #003366;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #004080;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.pais-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px 20px;
+}
+
+
+.pais-card {
+  width: 240px;
+  height: 320px;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.pais-card:hover {
+  transform: scale(1.05);
+}
+
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.pais-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+
+.card-front {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-front h3 {
+  margin: 10px 0 5px;
+  color: #003366;
+}
+
+
+.card-back {
+  background: #f7fbff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  padding: 20px;
+  color: #333;
+}
+
+
+.bandeira {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <h1><i class="fas fa-plane"></i> Explore o Mundo</h1>
+
+
+  <h2>Clique nas bandeiras para ver curiosidades!</h2>
+
+  <div class="pais-container" id="paisContainer"></div>
+  
+ 
+
+  <script>
+   const paises = [
+  {
+    nome: "Brasil",
+    bandeira: "https://flagcdn.com/w320/br.png",
+    descricao: "Terra do samba, futebol e natureza exuberante!",
+    curiosidade: "A floresta amazônica é a maior do mundo!"
+  },
+  {
+    nome: "Japão",
+    bandeira: "https://flagcdn.com/w320/jp.png",
+    descricao: "Tradição milenar, tecnologia e flores de cerejeira.",
+    curiosidade: "O Japão tem mais de 6.800 ilhas!"
+  },
+  {
+    nome: "França",
+    bandeira: "https://flagcdn.com/w320/fr.png",
+    descricao: "Conhecida por sua gastronomia, arte e romance.",
+    curiosidade: "A Torre Eiffel foi construída para a Exposição Universal de 1889."
+  },
+  {
+    nome: "Itália",
+    bandeira: "https://flagcdn.com/w320/it.png",
+    descricao: "Pizza, moda, história e paisagens inesquecíveis.",
+    curiosidade: "Roma tem uma cidade dentro dela: o Vaticano!"
+  },
+  {
+    nome: "Egito",
+    bandeira: "https://flagcdn.com/w320/eg.png",
+    descricao: "Múmias, pirâmides e muita história!",
+    curiosidade: "A Grande Pirâmide de Gizé é a única das 7 Maravilhas Antigas ainda de pé."
+  },
+  {
+    nome: "Índia",
+    bandeira: "https://flagcdn.com/w320/in.png",
+    descricao: "Colorida, espiritual e cheia de sabores!",
+    curiosidade: "A Índia é o berço do yoga e do sistema decimal."
+  },
+  {
+    nome: "China",
+    bandeira: "https://flagcdn.com/w320/cn.png",
+    descricao: "Dinastia, dragões e delícias orientais.",
+    curiosidade: "A Muralha da China tem mais de 21 mil km!"
+  },
+  {
+    nome: "EUA",
+    bandeira: "https://flagcdn.com/w320/us.png",
+    descricao: "Hollywood, fast-food e diversidade cultural.",
+    curiosidade: "O Alasca é o estado mais ao norte, oeste e leste dos EUA!"
+  },
+  {
+    nome: "Argentina",
+    bandeira: "https://flagcdn.com/w320/ar.png",
+    descricao: "Terra do tango, carne suculenta e Maradona.",
+    curiosidade: "A Argentina abriga o ponto mais alto das Américas: Aconcágua."
+  },
+  {
+    nome: "México",
+    bandeira: "https://flagcdn.com/w320/mx.png",
+    descricao: "Tacos, festas e cultura vibrante!",
+    curiosidade: "O México é o lar das antigas civilizações maia e asteca."
+  },
+  {
+    nome: "Espanha",
+    bandeira: "https://flagcdn.com/w320/es.png",
+    descricao: "Paixão pelo flamenco e arte inigualável.",
+    curiosidade: "Na Espanha, fala-se mais de cinco idiomas oficiais!"
+  },
+  {
+    nome: "Austrália",
+    bandeira: "https://flagcdn.com/w320/au.png",
+    descricao: "Cangurus, surf e a Grande Barreira de Corais.",
+    curiosidade: "É o único país que também é um continente inteiro!"
+  },
+  {
+    nome: "Alemanha",
+    bandeira: "https://flagcdn.com/w320/de.png",
+    descricao: "Cerveja, castelos e engenharia de ponta.",
+    curiosidade: "O maior festival de cerveja do mundo é o Oktoberfest em Munique."
+  },
+  {
+    nome: "Grécia",
+    bandeira: "https://flagcdn.com/w320/gr.png",
+    descricao: "Mitologia, ilhas lindas e culinária única.",
+    curiosidade: "A Grécia é o berço da democracia ocidental."
+  },
+  {
+    nome: "África do Sul",
+    bandeira: "https://flagcdn.com/w320/za.png",
+    descricao: "Safáris, diversidade e espírito Ubuntu.",
+    curiosidade: "Tem três capitais oficiais: Pretória, Cidade do Cabo e Bloemfontein."
+  }
+];
+
+    const container = document.getElementById("paisContainer");
+   
+
+    paises.forEach(pais => {
+      const card = document.createElement("div");
+      card.className = "pais-card";
+
+      const inner = document.createElement("div");
+      inner.className = "card-inner";
+
+      inner.innerHTML = `
+        <div class="card-front">
+          <img src="${pais.bandeira}" class="bandeira" alt="Bandeira de ${pais.nome}" />
+          <h3>${pais.nome}</h3>
+          <p>${pais.descricao}</p>
+        </div>
+        <div class="card-back">
+          <h3>Curiosidade:</h3>
+          <p>${pais.curiosidade}</p>
+        </div>
+      `;
+     
+      card.appendChild(inner);
+container.appendChild(card);
+
+
+      
+    });
+  </script>
+</body>
+</html>

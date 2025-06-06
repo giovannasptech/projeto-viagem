@@ -10,8 +10,8 @@
 
 body {
   font-family: 'Fredoka', sans-serif;
-  background-color: #F4F4F4;
-  color: #1D3557;
+  background-color: #fffdfd;
+  color:#58a7f7;
   line-height: 1.6;
 }
 
@@ -34,13 +34,13 @@ header {
 
 header h1 {
   font-size: 2.5rem;
-  color: #1D3557;
+  color:#58a7f7;
 }
 
 nav a {
   margin-left: 20px;
   text-decoration: none;
-  color: #1D3557;
+  color:#58a7f7;
   font-weight: 500;
   transition: color 0.3s;
 }
@@ -51,7 +51,7 @@ nav a:hover {
 
 
 .hero {
-  background-color: #A7C7E7;
+  background-color: #4fc3f7;
   color: #FFFFFF;
   text-align: center;
   padding: 60px 20px;

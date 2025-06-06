@@ -1,0 +1,62 @@
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: #e0e8fa;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cartao {
+    background: #fff;
+    border: 3px dashed #00568f;
+    border-radius: 15px;
+    width: 500px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    color: #006064;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .info label {
+    font-weight: bold;
+    color: #00124d;
+  }
+
+  .info input {
+    padding: 10px;
+    border: 2px solid #b2ebf2;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .botao {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #00838f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .gerado {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 2px dashed #80deea;
+    color: #00244d;
+    font-size: 18px;
+    background-color: #e0f2f1;
+    border-radius: 10px;
+    display: none;
+  }
